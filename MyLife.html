@@ -1,0 +1,41 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+     <meta charset="utf-8">
+	<title> 내가 살아온 인생 계산하기 </title>
+</head>
+<body>
+	<script>
+		function getBirth() {
+			var birthday = document.getElementById("birth").value; 
+			// 사용자가 입력한 날짜를 추출 (yyyy-mm-dd 형식)
+			var today= new Date(); // 오늘 날짜 정보
+			
+			// 사용자가 입력한 날짜에서 년/월/일 따로 저장
+			var birthYear = parseInt(birthday.slice(0,4));
+			var birthMonth = parseInt(birthday.slice(5,7));
+			var birthDay = parseInt(birthday.slice(8,10));
+			
+			// 나이 구하기
+			var age = today.getFullYear() - birthYear + 1;
+			
+			// 살아온 날 수 구하기
+			var birthday = new Date(birthYear, birthMonth - 1, birthDay);
+			var birthTime = birthday.getTime(); 
+			var todayTime = today.getTime();
+			// getTime() :1970년 1월 1일부터 지금까지 흐른 밀리초를 반환
+			var time = todayTime - birthTime;
+			var day = Math.round(time/1000/60/60/24);
+			
+			// 출력
+			document.getElementById("age").innerHTML = age;
+			document.getElementById("day").innerHTML = day;
+		}
+	</script>
+
+	<h1>내가 살아온 인생 계산하기</h1>
+	생년원일 입력 : <input type = "date" id = "birth"> <br>
+	<input type = "button" value = "나이 계산" onclick = "getBirth()"> <br>
+	당신은 태어나서부터 <span id = "day">???</span>일 경과해서 지금은 <span id = "age">???</span>살 입니다.
+</body>
+</html>
